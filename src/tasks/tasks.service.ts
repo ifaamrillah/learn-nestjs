@@ -33,12 +33,21 @@ export class TasksService {
     return this.tasks;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} task`;
+  findOne(id: number): Task | undefined {
+    return this.tasks.find((task) => task.id === id && !task.isDeleted);
   }
 
   update(id: number, updateTaskDto: UpdateTaskDto) {
-    return `This action updates a #${id} task`;
+    const task = this.findOne(id);
+    if (task) {
+      if (updateTaskDto.status) task.status = updateTaskDto.status;
+      if (updateTaskDto.title) task.title = updateTaskDto.title;
+      if (updateTaskDto.description)
+        task.description = updateTaskDto.description;
+
+      task.updatedAt = Date.now();
+    }
+    return task;
   }
 
   remove(id: number) {
