@@ -51,6 +51,12 @@ export class TasksService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} task`;
+    const task = this.findOne(id);
+    if (task) {
+      task.isDeleted = true;
+      task.updatedAt = Date.now();
+      return task;
+    }
+    return undefined;
   }
 }
