@@ -11,4 +11,15 @@ export class Task {
   createdAt: number; // unix timestamp
   updatedAt: number; // unix timestamp
   isDeleted: boolean;
+
+  constructor(id: number, title: string, description: string) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.status = 'TODO';
+    this.ownerId = -1;
+    this.updatedAt = Date.now();
+    this.createdAt = Date.now();
+    this.isDeleted = false;
+  }
 }

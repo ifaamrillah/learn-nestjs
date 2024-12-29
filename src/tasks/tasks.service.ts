@@ -19,7 +19,14 @@ export class TasksService {
   ];
 
   create(createTaskDto: CreateTaskDto) {
-    return 'This action adds a new task';
+    const task = new Task(
+      this.tasks.length + 1,
+      createTaskDto.title,
+      createTaskDto.description,
+    );
+
+    this.tasks.push(task);
+    return task;
   }
 
   findAll() {
