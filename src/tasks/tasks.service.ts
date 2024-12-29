@@ -1,15 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
+import { Task } from './entities/task.entity';
 
 @Injectable()
 export class TasksService {
+  private tasks: Task[] = [
+    {
+      id: 1,
+      title: 'Task 1',
+      description: 'Description 1',
+      status: 'TODO',
+      ownerId: -1,
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+      isDeleted: false,
+    },
+  ];
+
   create(createTaskDto: CreateTaskDto) {
     return 'This action adds a new task';
   }
 
   findAll() {
-    return `This action returns all tasks`;
+    return this.tasks;
   }
 
   findOne(id: number) {
